@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: scopt
+Implementation-Version: 4.0.0-RC2
+Specification-Vendor: com.github.scopt
+Specification-Title: scopt
+Implementation-Vendor-Id: com.github.scopt
+Specification-Version: 4.0.0-RC2
+Implementation-URL: https://github.com/scopt/scopt
+Implementation-Vendor: com.github.scopt
+
