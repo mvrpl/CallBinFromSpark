@@ -5,7 +5,7 @@ use std::rc::Rc;
 use std::cell::RefCell;
 use hdfs::HdfsFsCache;
 use hdfs::HdfsFs;
-use hdfs::util::HdfsUtil;
+use util::HdfsUtil;
 use std::env;
 
 fn main() {
