@@ -3,7 +3,7 @@ use std::rc::Rc;
 use std::cell::RefCell;
 use hdfs::HdfsFsCache;
 use hdfs::HdfsFs;
-use hdfs::HdfsUtil;
+use hdfs::util::HdfsUtil;
 use std::env;
 
 fn main() {
@@ -17,7 +17,7 @@ fn main() {
 	match io::stdin().read_line(&mut sourcePath) {
 		Ok(_) => {
 			println!("Copying from '{}' to '{}'", sourcePath, destPath);
-			match HdfsUtil.copy(fsSrc, sourcePath, fsDst, destPath){
+			match HdfsUtil::copy(fsSrc, sourcePath, fsDst, destPath){
 				Ok(_) => { println!("Copy successful!") },
 				Err(error) => { panic!("Copy error: {}", error) }
 			}
