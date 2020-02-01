@@ -1,3 +1,5 @@
+extern crate hdfs;
+
 use std::io;
 use std::rc::Rc;
 use std::cell::RefCell;
