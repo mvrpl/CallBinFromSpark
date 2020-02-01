@@ -25,7 +25,7 @@ object DistCP extends App {
         val sc = spark.sparkContext
         val hadoopFS = FileSystem.get(sc.hadoopConfiguration)
 
-        val binaryRust = sc.getConf.get("spark.master") match {
+        val binaryCPP = sc.getConf.get("spark.master") match {
             case "yarn" => {
                 val binName = sc.getConf.get("spark.yarn.dist.files").split(",")(0)
                 "./"++binName.substring(binName.lastIndexOf('/') + 1,binName.length)
@@ -62,8 +62,9 @@ object DistCP extends App {
         val paths = hadoopFS.globStatus(new Path(config.sourceURI)).map(uri => new URI(uri.getPath.toString) match {
             case UriValid(_, _, _, path) => path
         })
-        val pathsRDD = sc.parallelize(paths, paths.size / 2)
-        val piped = pathsRDD.pipe(Seq(binaryRust, srcHadoopFS, dstHadoopFS, uriDst.getPath))
+        val pathsRDD = sc.parallelize(paths)
+        println(Seq(binaryCPP, srcHadoopFS, dstHadoopFS, uriDst.getPath))
+        val piped = pathsRDD.pipe(Seq(binaryCPP, srcHadoopFS, dstHadoopFS, uriDst.getPath))
 
         piped.collect.foreach(println)
 	} getOrElse {
