@@ -1,10 +1,10 @@
 CPPFLAGS=-O2 -g -Wall -Isrc/libhdfs/
-LDFLAGS=-L$HADOOP_HOME/lib/native -lhdfs
+LDFLAGS=-L$$HADOOP_HOME/lib/native -lhdfs
 
-all: hdfs
+all: clean hdfs
 
-hdfs: src/hdfs.o
-	g++ $(CPPFLAGS) $(LDFLAGS) -o hdfs src/hdfs.cpp
+hdfs: src/hdfs.cpp
+	g++ $(CPPFLAGS) $(LDFLAGS) $^ -o $@
 
 clean:
 	rm -rf *.o *~ hdfs
